@@ -1,6 +1,7 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Iterator;
 
 public class TextAnalyzerTester {
 
@@ -8,7 +9,9 @@ public class TextAnalyzerTester {
         //With the tree map
         TextAnalyzer treeAnalyzer = new TextAnalyzer("treemap");
         try {
-            treeAnalyzer.analyzeText("txt/aliceinwonderland.txt");
+            treeAnalyzer.analyzeText("txt/812_notes.txt");
+            treeAnalyzer.mccEfficiencies("txt/812_notes.txt");
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -16,9 +19,32 @@ public class TextAnalyzerTester {
         }
         //Test the frequency count ordering
         Collection<IWordData> wordsOrderedByFrequency = treeAnalyzer.allWordsOrdedByFrequencyCount();
-        for (IWordData word : wordsOrderedByFrequency) {
-            System.out.println(word.getFrequencyCount());
+        Iterator<IWordData> it = wordsOrderedByFrequency.iterator();
+        //for (IWordData word : wordsOrderedByFrequency) {
+        String mccs = "";
+        String mccList = "\"the\", \"ing\", \"and\", \"ion\"";
+        int i = 4;
+        while (true) {
+            IWordData word = it.next();
+            double count = (double)((word.getFrequencyCount() + 50)/100)/10.0;
+            if (count >= 8.0) {
+                String wordText = word.getText();
+                // "  " is not spaces, but something similar
+                if (!wordText.equals("io") && !wordText.equals("ng") && !wordText.equals("  ")) {
+                    i++;
+                    mccs += i + " '" + wordText + "' " + count + "\n";
+                    // Generate the list of MCCs
+                    mccList += ", \"" + wordText + "\"";
+                }
+            } else {
+                break;
+            }
         }
+
+        //System.out.println(mccs);
+        System.out.println(mccList);
+
+        /*AB
         //Test the text ordering
         Collection<IWordData> wordsOrderedByText = treeAnalyzer.allWordsOrderByText();
         for (IWordData word : wordsOrderedByText) {
@@ -35,11 +61,12 @@ public class TextAnalyzerTester {
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
         }
+        */
         //Get unique word count
-        System.out.println(treeAnalyzer.getUniqueWordCount());
+        //System.out.println("Unique Words " + treeAnalyzer.getUniqueWordCount());
         //Get word count
-        System.out.println(treeAnalyzer.getWordCount());
-
+        //System.out.println("Words " + treeAnalyzer.getWordCount());
+/*AB
         //With the hash map
         TextAnalyzer hashAnalyzer = new TextAnalyzer("hashmap");
         try {
@@ -74,5 +101,6 @@ public class TextAnalyzerTester {
         System.out.println(hashAnalyzer.getUniqueWordCount());
         //Get word count
         System.out.println(hashAnalyzer.getWordCount());
+*/
     }
 }
