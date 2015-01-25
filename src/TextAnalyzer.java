@@ -59,33 +59,66 @@ public class TextAnalyzer implements ITextAnalyzer {
     @Override
     public void analyzeText(String filename) throws FileNotFoundException, IOException {
         //Read the file specified into the scanner
-
-        long chords = 0;
-        Scanner inp = new Scanner(new FileReader(filename)).useDelimiter("\n");
+        Scanner inp = new Scanner(new FileReader("txt/" + filename));
         while (inp.hasNext()) {
             //Store each word in the chunk variable and make sure to remove any special characters
-            //String chunk = removeSpecialCharacters(inp.next());
+            String chunk = removeSpecialCharacters(inp.next());
+            //String chunk = inp.next();
+            //Do this condition first since we'll be putting more words into the map than updating the frequency count
+            if (!words.containsKey(chunk)) {
+                //Insert each chunk into the map as the key. The value is the frequency (1 by default) and the text itself
+                words.put(chunk, new WordData(1, chunk));
+            } else {
+                //If the map already contains the key, index into it and increment the count value
+                WordData key = (WordData) words.get(chunk);
+                key.updateFrequencyCount();
+            }
+        }
+    }
 
+    public void findSuffixes(String filename) throws FileNotFoundException, IOException {
+        //Read the file specified into the scanner
+        final int SUFFIX_LENGHT = 6;
+        Scanner inp = new Scanner(new FileReader("txt/" + filename));
+        while (inp.hasNext()) {
+            //Store each word in the chunk variable and make sure to remove any special characters
+            String chunk = removeSpecialCharacters(inp.next()).toLowerCase();
+            int lenght = chunk.length();
+
+            // Look only at long words and the ones that don't have numbers in them
+            if (lenght >= SUFFIX_LENGHT + 3 && !chunk.matches(".*\\d+.*")) {
+                String suffix = chunk.substring(lenght - SUFFIX_LENGHT, lenght);
+
+                //Do this condition first since we'll be putting more words into the map than updating the frequency count
+                if (!words.containsKey(suffix)) {
+                    //Insert each chunk into the map as the key. The value is the frequency (1 by default) and the text itself
+                    words.put(suffix, new WordData(1, suffix));
+                } else {
+                    //If the map already contains the key, index into it and increment the count value
+                    String prefix = chunk.substring(0, lenght - SUFFIX_LENGHT);
+                    WordData key = (WordData) words.get(suffix);
+                    key.updateFrequencyCount();
+
+                    //Add original word to the  suffix
+                    if (!key.words.containsKey(prefix)) {
+                        key.words.put(prefix, new WordData(1, prefix));
+                    } else {
+                        WordData suffixKey = (WordData) key.words.get(prefix);
+                        suffixKey.updateFrequencyCount();
+                    }
+                }
+            }
+        }
+    }
+    public void findNGrams(String filename, int n) throws FileNotFoundException, IOException {
+        long chords = 0;
+        Scanner inp = new Scanner(new FileReader("txt/" + filename)).useDelimiter("\n");
+        while (inp.hasNext()) {
             String line = inp.next();
             // Find all character frequencies
             int length = line.length();
             chords += length;
-            /*
-            for (int i = 0; i < length; i++) {
-                String chunk = line.substring(i, i + 1).toLowerCase();
-                //Do this condition first since we'll be putting more words into the map than updating the frequency count
-                if (!words.containsKey(chunk)) {
-                    //Insert each chunk into the map as the key. The value is the frequency (1 by default) and the text itself
-                    words.put(chunk, new WordData(1, chunk));
-                } else {
-                    //If the map already contains the key, index into it and increment the count value
-                    WordData key = (WordData) words.get(chunk);
-                    key.updateFrequencyCount();
-                }
-            }
-            */
             // Find all n-bigrams
-            int n = 2;
             for (int i = 0; i < length - (n - 1); i++) {
                 String chunk = line.substring(i, i + n).toLowerCase();
                 if (!(chunk.contains(" ") || chunk.contains("-"))) {
@@ -100,63 +133,46 @@ public class TextAnalyzer implements ITextAnalyzer {
                     }
                 }
             }
-            /*n = 3;
-            for (int i = 0; i < length - (n - 1); i++) {
-                String chunk = line.substring(i, i + n).toLowerCase();
-                if (!(chunk.contains(" ") || chunk.contains("-"))) {
-                    //Do this condition first since we'll be putting more words into the map than updating the frequency count
-                    if (!words.containsKey(chunk)) {
-                        //Insert each chunk into the map as the key. The value is the frequency (1 by default) and the text itself
-                        words.put(chunk, new WordData(1, chunk));
-                    } else {
-                        //If the map already contains the key, index into it and increment the count value
-                        WordData key = (WordData) words.get(chunk);
-                        key.updateFrequencyCount();
-                    }
-                }
-            }*/
         }
-        System.out.println("chords " + chords);
+        //System.out.println("chords " + chords);
     }
 
-    public void mccEfficiencies(String filename) throws FileNotFoundException, IOException {
+    public void mccEfficiencies(String filename, String mccs[]) throws FileNotFoundException, IOException {
         //Read the file specified into the scanner
+        long letters = 0;
         long chords = 0;
-        long newChords = 0;
-        Scanner inp = new Scanner(new FileReader(filename)).useDelimiter("\n");
+        Scanner inp = new Scanner(new FileReader("txt/" + filename)).useDelimiter("\n");
         while (inp.hasNext()) {
             //Store each word in the chunk variable and make sure to remove any special characters
             //String chunk = removeSpecialCharacters(inp.next());
 
             String line = inp.next();
             //line = "\"the\", \"ing\", \"and\", \"ion\", \"in\",";
-            chords += line.length();
-            /*
-            String mccs[] = { "the", "ing", "and", "ion", "in", "er", "re", "th", "on", "or",
-                    "an", "le", "te", "es", "he", "at", "to", "en", "co", "ro", "ed", "ti",
-                    "st", "de", "al", "it", "se", "ar", "nt", "nd"//, "ou", "om", "ma", "me",
-                    //"li", "ne", "is", "il", "ve", "as", "ra", "ta", "ll", "no", "ch", "ea",
-                    //"et", "us", "ce", "ha", "ec", "fo", "ic", "ot", "ge", "ac", "ri", "el",
-                    //"la", "ct", "ca"
-            };*/
-            String mccs[] = { "the", "ing", "and", "ion", "in", "er", "re", "th", "on", "or",
-                    "an", "le", "te", "es", "he", "at", "to", "en", "co", "ro", "ed", "ti",
-                    "st", "de", "al", "it", "se", "ar", "nt", "nd", "ou", "om", "ma", "me",
-                    "li", "ne", "is", "il", "ve", "as", "ra", "ta", "ll", "no", "ch", "ea",
-                    "et", "us", "ce", "ha", "ec", "fo", "ic", "ot", "ge", "ac", "ri", "el",
-                    "la", "ct", "ca"
-            };
+            //line = "tztz"; // "thethe"  "thth";
+
             String newLine = line;
             for (String mcc: mccs) {
-                newLine = newLine.replaceAll(mcc, "");
+                newLine = newLine.replaceAll(mcc, "*");
             }
-            newChords += newLine.length();
+            letters += line.length();
+            chords += newLine.length();
         }
-        System.out.println("chords = " + chords + " MCC chords = " + newChords);
-        System.out.println("saved chords = " + (chords - newChords));
+        System.out.println("For " + filename + ":");
+        System.out.print(mccs.length + " MCCs are used, ");
+        //System.out.println(chords + "chord are typed to output " + letters + " letters.");
+        double speedIncrease = (double)(letters)/chords;
+        System.out.print(((int)(speedIncrease * 100))/100.0 + " times speed increase. ");
+        System.out.println("Saved chords: " + (letters - chords) +
+                " (" + (int)(((double)(letters - chords))/letters * 100.0) + "%)");
+
+        int exampleSpeed = 40;
+        System.out.println("Typing with " + mccs.length + " MCCs will increase speed from " +
+                exampleSpeed + " wpm to " +  (int)(exampleSpeed * speedIncrease) + " wpm.");
+
+        System.out.println();
     }
 
-                @Override
+    @Override
     public IWordData findWord(String word) {
         //Check if the map contains the word (which is the key)
         if (words.containsKey(word)) {

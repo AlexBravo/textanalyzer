@@ -14,4 +14,8 @@ public interface IWordData {
      */
     String getText();
 
+    public int getWordCount(int minCount);
+
+    public void printWords(int minCount);
+
 }
