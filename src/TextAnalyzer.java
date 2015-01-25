@@ -76,9 +76,8 @@ public class TextAnalyzer implements ITextAnalyzer {
         }
     }
 
-    public void findSuffixes(String filename) throws FileNotFoundException, IOException {
+    public void findSuffixes(String filename, int suffixLength) throws FileNotFoundException, IOException {
         //Read the file specified into the scanner
-        final int SUFFIX_LENGHT = 6;
         Scanner inp = new Scanner(new FileReader("txt/" + filename));
         while (inp.hasNext()) {
             //Store each word in the chunk variable and make sure to remove any special characters
@@ -86,8 +85,8 @@ public class TextAnalyzer implements ITextAnalyzer {
             int lenght = chunk.length();
 
             // Look only at long words and the ones that don't have numbers in them
-            if (lenght >= SUFFIX_LENGHT + 3 && !chunk.matches(".*\\d+.*")) {
-                String suffix = chunk.substring(lenght - SUFFIX_LENGHT, lenght);
+            if (lenght >= suffixLength + 3 && !chunk.matches(".*\\d+.*")) {
+                String suffix = chunk.substring(lenght - suffixLength, lenght);
 
                 //Do this condition first since we'll be putting more words into the map than updating the frequency count
                 if (!words.containsKey(suffix)) {
@@ -95,7 +94,7 @@ public class TextAnalyzer implements ITextAnalyzer {
                     words.put(suffix, new WordData(1, suffix));
                 } else {
                     //If the map already contains the key, index into it and increment the count value
-                    String prefix = chunk.substring(0, lenght - SUFFIX_LENGHT);
+                    String prefix = chunk.substring(0, lenght - suffixLength);
                     WordData key = (WordData) words.get(suffix);
                     key.updateFrequencyCount();
 
@@ -110,7 +109,7 @@ public class TextAnalyzer implements ITextAnalyzer {
             }
         }
     }
-    public void findNGrams(String filename, int n) throws FileNotFoundException, IOException {
+    public void findNGrams(String filename, int nGramLenght) throws FileNotFoundException, IOException {
         long chords = 0;
         Scanner inp = new Scanner(new FileReader("txt/" + filename)).useDelimiter("\n");
         while (inp.hasNext()) {
@@ -119,8 +118,8 @@ public class TextAnalyzer implements ITextAnalyzer {
             int length = line.length();
             chords += length;
             // Find all n-bigrams
-            for (int i = 0; i < length - (n - 1); i++) {
-                String chunk = line.substring(i, i + n).toLowerCase();
+            for (int i = 0; i < length - (nGramLenght - 1); i++) {
+                String chunk = line.substring(i, i + nGramLenght).toLowerCase();
                 if (!(chunk.contains(" ") || chunk.contains("-"))) {
                     //Do this condition first since we'll be putting more words into the map than updating the frequency count
                     if (!words.containsKey(chunk)) {

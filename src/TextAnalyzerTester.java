@@ -92,8 +92,12 @@ public class TextAnalyzerTester {
         TextAnalyzer treeAnalyzer = new TextAnalyzer("treemap");
         String fileName = "812_notes.txt";
 
+        final int MIN_COUNT = 100;
+        final int MIN_PREFIXES = 5;
+        final int MIN_PREFIX_OCCURENCES = 10;
+        final int SUFFIX_LENGTH = 4;
         try {
-            treeAnalyzer.findSuffixes(fileName);
+            treeAnalyzer.findSuffixes(fileName, SUFFIX_LENGTH);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -104,20 +108,17 @@ public class TextAnalyzerTester {
         Collection<IWordData> wordsOrderedByFrequency = treeAnalyzer.allWordsOrdedByFrequencyCount();
         Iterator<IWordData> it = wordsOrderedByFrequency.iterator();
         int count = 0;
-        final int MIN_COUNT = 100;
-        final int MIN_PREFIXES = 5;
-        final int MIN_PREFIX_OCCURENCES = 10;
         while(it.hasNext()) {
             IWordData word = it.next();
             if (word.getWordCount(MIN_PREFIX_OCCURENCES) >= MIN_PREFIXES && word.getFrequencyCount() >= MIN_COUNT) {
                 String wordText = word.getText();
                 System.out.println("'" + wordText + "' " + word.getFrequencyCount());
                 count++;
-                word.printWords(MIN_PREFIX_OCCURENCES);
+                //word.printWords(MIN_PREFIX_OCCURENCES);
             }
         }
 
-        System.out.println(count+" suffixes with count of "+MIN_COUNT+" or more.");
+        System.out.println(count + " suffixes of length " + SUFFIX_LENGTH + " with count of "+MIN_COUNT+" or more.");
         //Get unique word count
         System.out.println("Unique words " + treeAnalyzer.getUniqueWordCount());
         //Get word count
