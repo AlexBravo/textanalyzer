@@ -1,21 +1,16 @@
-public interface IWordData {
+interface IWordData {
 
     /**
-     * Returns the number of times the word occurred in the analyzed text
-     *
-     * @return
+     * @return Returns the number of times the word occurred in the analyzed text
      */
     long getFrequencyCount();
 
     /**
-     * Returns the word text
-     *
-     * @return
+     * @return Returns the word text
      */
     String getText();
 
-    public int getWordCount(int minCount);
+    int getWordCount(int minCount);
 
-    public void printWords(int minCount);
-
+    //void printWords(int minCount);
 }

@@ -1,20 +1,20 @@
 import java.util.*;
 
-public class WordData implements IWordData {
+class WordData implements IWordData {
 
     private final String analyzedWord;
     private long count;
-    public Map<String, IWordData> words;
+    Map<String, IWordData> words;
 
-    public WordData(long count, String text) {
+    WordData(long count, String text) {
         this.count = count;
         this.analyzedWord = text;
 
-        words = new HashMap();
+        words = new HashMap<>();
     }
 
     //Method to update the count if the key already exists in the map
-    public void updateFrequencyCount() {
+    void updateFrequencyCount() {
         //Always increments by 1 so there is no need for a parameter to specify a number
         this.count++;
     }
@@ -43,7 +43,9 @@ public class WordData implements IWordData {
         return count;
     }
 
-    @Override
+
+    //@Override
+    @SuppressWarnings("unused")
     public void printWords(int minCount) {
         //Put all of the values in the map (which are IWordData objects) into a list
         List<IWordData> wordsOrderedByFrequency = new LinkedList<>(words.values());

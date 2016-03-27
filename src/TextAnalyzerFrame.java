@@ -11,7 +11,7 @@ public class TextAnalyzerFrame extends javax.swing.JFrame {
     /**
      * Creates new form TextAnalyzerFrame
      */
-    public TextAnalyzerFrame() {
+    private TextAnalyzerFrame() {
         initComponents();
     }
 
@@ -23,20 +23,20 @@ public class TextAnalyzerFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        mapTypeButtonGroup = new javax.swing.ButtonGroup();
+        ButtonGroup mapTypeButtonGroup = new ButtonGroup();
         logPanel = new javax.swing.JPanel();
-        logScrollPane = new javax.swing.JScrollPane();
+        JScrollPane logScrollPane = new JScrollPane();
         logTextArea = new javax.swing.JTextArea();
-        mapTypePanel = new javax.swing.JPanel();
+        JPanel mapTypePanel = new JPanel();
         useHashMapRadioButton = new javax.swing.JRadioButton();
-        useTreeMapRadioButton = new javax.swing.JRadioButton();
-        buttonPanel = new javax.swing.JPanel();
-        analyzeTextButton = new javax.swing.JButton();
-        showWordsButton = new javax.swing.JButton();
-        showWordsByFrequencyButton = new javax.swing.JButton();
-        lookupWordButton = new javax.swing.JButton();
-        clearLogButton = new javax.swing.JButton();
-        saveLogToFileButton = new javax.swing.JButton();
+        JRadioButton useTreeMapRadioButton = new JRadioButton();
+        JPanel buttonPanel = new JPanel();
+        JButton analyzeTextButton = new JButton();
+        JButton showWordsButton = new JButton();
+        JButton showWordsByFrequencyButton = new JButton();
+        JButton lookupWordButton = new JButton();
+        JButton clearLogButton = new JButton();
+        JButton saveLogToFileButton = new JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,7 +92,7 @@ public class TextAnalyzerFrame extends javax.swing.JFrame {
         analyzeTextButton.setText("Analyze Text");
         analyzeTextButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                analyzeTextButtonActionPerformed(evt);
+                analyzeTextButtonActionPerformed();
             }
         });
         buttonPanel.add(analyzeTextButton);
@@ -100,7 +100,7 @@ public class TextAnalyzerFrame extends javax.swing.JFrame {
         showWordsButton.setText("Show Words");
         showWordsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                showWordsButtonActionPerformed(evt);
+                showWordsButtonActionPerformed();
             }
         });
         buttonPanel.add(showWordsButton);
@@ -108,7 +108,7 @@ public class TextAnalyzerFrame extends javax.swing.JFrame {
         showWordsByFrequencyButton.setText("Show Words By Frequency");
         showWordsByFrequencyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                showWordsByionButtonFrequencyButtonAct(evt);
+                showWordsByionButtonFrequencyButtonAct();
             }
         });
         buttonPanel.add(showWordsByFrequencyButton);
@@ -116,7 +116,7 @@ public class TextAnalyzerFrame extends javax.swing.JFrame {
         lookupWordButton.setText("Lookup Word");
         lookupWordButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lookupWordButtonActionPerformed(evt);
+                lookupWordButtonActionPerformed();
             }
         });
         buttonPanel.add(lookupWordButton);
@@ -124,7 +124,7 @@ public class TextAnalyzerFrame extends javax.swing.JFrame {
         clearLogButton.setText("Clear Log");
         clearLogButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearButtonActionPerformed(evt);
+                clearButtonActionPerformed();
             }
         });
         buttonPanel.add(clearLogButton);
@@ -132,7 +132,7 @@ public class TextAnalyzerFrame extends javax.swing.JFrame {
         saveLogToFileButton.setText("Save Log to File");
         saveLogToFileButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveLogToFileButtonnActionPerformed(evt);
+                saveLogToFileButtonnActionPerformed();
             }
         });
         buttonPanel.add(saveLogToFileButton);
@@ -145,41 +145,51 @@ public class TextAnalyzerFrame extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
                                                 .addContainerGap()
-                                                .addComponent(logPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(logPanel, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGap(28, 28, 28)
-                                                .addComponent(mapTypePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(mapTypePanel, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(35, 35, 35)
-                                                .addComponent(buttonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 629, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addComponent(buttonPanel, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        629, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addContainerGap(14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addGap(25, 25, 25)
-                                .addComponent(logPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(logPanel, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGap(1, 1, 1)
-                                                .addComponent(mapTypePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addComponent(mapTypePanel, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGap(2, 2, 2)
-                                                .addComponent(buttonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)))
+                                                .addComponent(buttonPanel, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        131, Short.MAX_VALUE)))
                                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
+    private void clearButtonActionPerformed() {//GEN-FIRST:event_clearButtonActionPerformed
         // TODO add your handling code here:
-        int choice = JOptionPane.showConfirmDialog(logPanel, "Are you sure you want to clear the log?", "Clear Log", JOptionPane.YES_NO_OPTION);
+        int choice = JOptionPane.showConfirmDialog(logPanel, "Are you sure you want to clear the log?",
+                "Clear Log", JOptionPane.YES_NO_OPTION);
         if (choice == JOptionPane.YES_OPTION) {
             logTextArea.setText("");
         }
     }//GEN-LAST:event_clearButtonActionPerformed
 
-    private void saveLogToFileButtonnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveLogToFileButtonnActionPerformed
+    private void saveLogToFileButtonnActionPerformed() {
+        //GEN-FIRST:event_saveLogToFileButtonnActionPerformed
         // TODO add your handling code here:
         if (!logTextArea.getText().equals("")) {
             JFileChooser saveFile = new JFileChooser();
@@ -206,7 +216,8 @@ public class TextAnalyzerFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_saveLogToFileButtonnActionPerformed
 
-    private void analyzeTextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_analyzeTextButtonActionPerformed
+    private void analyzeTextButtonActionPerformed() {
+        //GEN-FIRST:event_analyzeTextButtonActionPerformed
         // TODO add your handling code here:
         JFileChooser fileChooser = new JFileChooser();
         javax.swing.filechooser.FileFilter textFilter = new javax.swing.filechooser.FileFilter() {
@@ -218,10 +229,7 @@ public class TextAnalyzerFrame extends javax.swing.JFrame {
 
             @Override
             public boolean accept(File f) {
-                if (f.getName().toLowerCase().endsWith("txt") || f.isDirectory()) {
-                    return true;
-                }
-                return false;
+                return f.getName().toLowerCase().endsWith("txt") || f.isDirectory();
             }
         };
         fileChooser.setFileFilter(textFilter);
@@ -237,27 +245,27 @@ public class TextAnalyzerFrame extends javax.swing.JFrame {
             try {
                 textAnalyzer.analyzeText(fileChooser.getSelectedFile().getPath());
                 endTime = System.nanoTime();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
             logTextArea.append("File name: " + fileChooser.getSelectedFile().getName() + "\n");
             logTextArea.append("Number of unique words: " + textAnalyzer.getUniqueWordCount() + "\n");
             logTextArea.append("Total number of words: " + textAnalyzer.getWordCount() + "\n");
-            logTextArea.append("Time taken to analyze the file: " + TimeUnit.NANOSECONDS.toMillis(endTime - startTime) + " milliseconds\n");
+            logTextArea.append("Time taken to analyze the file: "
+                    + TimeUnit.NANOSECONDS.toMillis(endTime - startTime) + " milliseconds\n");
         }
 
     }//GEN-LAST:event_analyzeTextButtonActionPerformed
 
-    private void lookupWordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lookupWordButtonActionPerformed
+    private void lookupWordButtonActionPerformed() {//GEN-FIRST:event_lookupWordButtonActionPerformed
         // TODO add your handling code here:
         if (textAnalyzer != null) {
             long startTime = System.nanoTime();
-            long endTime = 0;
+            long endTime;
             String word = JOptionPane.showInputDialog(logPanel, "Enter the word you're looking for");
             if (textAnalyzer.findWord(word) != null) {
-                logTextArea.append(textAnalyzer.findWord(word).getText() + " - Occured " + textAnalyzer.findWord(word).getFrequencyCount() + " times. \n");
+                logTextArea.append(textAnalyzer.findWord(word).getText() + " - Occurred "
+                        + textAnalyzer.findWord(word).getFrequencyCount() + " times. \n");
                 endTime = System.nanoTime();
                 logTextArea.append("Operation took " + TimeUnit.NANOSECONDS.toMillis(endTime - startTime) + " milliseconds\n");
             } else {
@@ -266,24 +274,25 @@ public class TextAnalyzerFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_lookupWordButtonActionPerformed
 
-    private void showWordsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showWordsButtonActionPerformed
+    private void showWordsButtonActionPerformed() {//GEN-FIRST:event_showWordsButtonActionPerformed
         // TODO add your handling code here:
         if (textAnalyzer != null) {
             long startTime = System.nanoTime();
             for (IWordData word : textAnalyzer.allWordsOrderByText()) {
-                logTextArea.append(word.getText() + " - Occured " + word.getFrequencyCount() + " times\n");
+                logTextArea.append(word.getText() + " - Occurred " + word.getFrequencyCount() + " times\n");
             }
             long endTime = System.nanoTime();
-            logTextArea.append("It took " + TimeUnit.NANOSECONDS.toMillis(endTime - startTime) + " milliseconds to analyze these words\n");
+            logTextArea.append("It took " + TimeUnit.NANOSECONDS.toMillis(endTime - startTime)
+                    + " milliseconds to analyze these words\n");
         }
     }//GEN-LAST:event_showWordsButtonActionPerformed
 
-    private void showWordsByionButtonFrequencyButtonAct(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showWordsByionButtonFrequencyButtonAct
+    private void showWordsByionButtonFrequencyButtonAct() {//GEN-FIRST:event_showWordsByionButtonFrequencyButtonAct
         // TODO add your handling code here:
         if (textAnalyzer != null) {
             long startTime = System.nanoTime();
             for (IWordData word : textAnalyzer.allWordsOrdedByFrequencyCount()) {
-                logTextArea.append(word.getText() + " - Occured " + word.getFrequencyCount() + " times\n");
+                logTextArea.append(word.getText() + " - Occurred " + word.getFrequencyCount() + " times\n");
             }
             long endTime = System.nanoTime();
             logTextArea.append("It took " + TimeUnit.NANOSECONDS.toMillis(endTime - startTime) + " milliseconds to analyze these words\n");
@@ -301,22 +310,10 @@ public class TextAnalyzerFrame extends javax.swing.JFrame {
         });
     }
 
-    TextAnalyzer textAnalyzer;
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton analyzeTextButton;
-    private javax.swing.JPanel buttonPanel;
-    private javax.swing.JButton clearLogButton;
+    private TextAnalyzer textAnalyzer;
     private javax.swing.JPanel logPanel;
-    private javax.swing.JScrollPane logScrollPane;
     private javax.swing.JTextArea logTextArea;
-    private javax.swing.JButton lookupWordButton;
-    private javax.swing.ButtonGroup mapTypeButtonGroup;
-    private javax.swing.JPanel mapTypePanel;
-    private javax.swing.JButton saveLogToFileButton;
-    private javax.swing.JButton showWordsButton;
-    private javax.swing.JButton showWordsByFrequencyButton;
     private javax.swing.JRadioButton useHashMapRadioButton;
-    private javax.swing.JRadioButton useTreeMapRadioButton;
     // End of variables declaration//GEN-END:variables
 
 }

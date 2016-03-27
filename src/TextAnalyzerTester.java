@@ -1,4 +1,3 @@
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Iterator;
@@ -87,19 +86,17 @@ public class TextAnalyzerTester {
         */
     }
 
-    public static void analizeEfficiencyOfSuffixes() {
+    private static void analizeEfficiencyOfSuffixes() {
         //With the tree map
         TextAnalyzer treeAnalyzer = new TextAnalyzer("treemap");
         String fileName = "812_notes.txt";
 
-        final int MIN_COUNT = 100;
+        final int MIN_COUNT = 1000;
         final int MIN_PREFIXES = 5;
-        final int MIN_PREFIX_OCCURENCES = 10;
+        final int MIN_PREFIX_OCCURRENCES = 10;
         final int SUFFIX_LENGTH = 4;
         try {
             treeAnalyzer.findSuffixes(fileName, SUFFIX_LENGTH);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -110,11 +107,11 @@ public class TextAnalyzerTester {
         int count = 0;
         while(it.hasNext()) {
             IWordData word = it.next();
-            if (word.getWordCount(MIN_PREFIX_OCCURENCES) >= MIN_PREFIXES && word.getFrequencyCount() >= MIN_COUNT) {
+            if (word.getWordCount(MIN_PREFIX_OCCURRENCES) >= MIN_PREFIXES && word.getFrequencyCount() >= MIN_COUNT) {
                 String wordText = word.getText();
                 System.out.println("'" + wordText + "' " + word.getFrequencyCount());
                 count++;
-                //word.printWords(MIN_PREFIX_OCCURENCES);
+                //word.printWords(MIN_PREFIX_OCCURRENCES);
             }
         }
 
@@ -124,7 +121,9 @@ public class TextAnalyzerTester {
         //Get word count
         System.out.println("All words " + treeAnalyzer.getWordCount());
     }
-    public static void analizeEfficiencyOfMCCs() {
+
+    @SuppressWarnings("unused")
+    public static void analiseEfficiencyOfMCCs() {
         //With the tree map
         TextAnalyzer treeAnalyzer = new TextAnalyzer("treemap");
         String fileName = "812_notes.txt";
@@ -180,19 +179,17 @@ public class TextAnalyzerTester {
         try {
             treeAnalyzer.findNGrams(fileName, 2);
             treeAnalyzer.mccEfficiencies(fileName, mccs);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        String mcc = "";
+        //String mcc = "";
         String mccList = ""; //"\"the\", \"ing\", \"and\", \"ion\"";
 
         Collection<IWordData> wordsOrderedByFrequency = treeAnalyzer.allWordsOrdedByFrequencyCount();
         Iterator<IWordData> it = wordsOrderedByFrequency.iterator();
 
-        int i = 0;
+        //int i = 0;
         while (true) {
             IWordData word = it.next();
             double count = (double)((word.getFrequencyCount() + 50)/100)/10.0;
@@ -200,8 +197,8 @@ public class TextAnalyzerTester {
                 String wordText = word.getText();
                 // "  " is not spaces, but something similar
                 if (!wordText.equals("io") && !wordText.equals("ng") && !wordText.equals("  ")) {
-                    i++;
-                    mcc += i + " '" + wordText + "' " + count + "\n";
+                    //i++;
+                    //mcc += i + " '" + wordText + "' " + count + "\n";
                     // Generate the list of MCCs
                     mccList += ", \"" + wordText + "\"";
                 }

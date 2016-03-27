@@ -1,18 +1,17 @@
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-public class TextAnalyzer implements ITextAnalyzer {
+class TextAnalyzer implements ITextAnalyzer {
 
     private Map<String, IWordData> words;
 
     //Specify what kind of map you want to use in the constructor
-    public TextAnalyzer(String mapType) {
+    TextAnalyzer(String mapType) {
         if (mapType.equalsIgnoreCase("hashmap")) {
-            words = new HashMap();
+            words = new HashMap<>();
         } else if (mapType.equalsIgnoreCase("treemap")) {
-            words = new TreeMap();
+            words = new TreeMap<>();
         } else {
             throw new IllegalArgumentException("Incorrect parameter for the constructor. Expecting \"hash\" or \"tree\"");
         }
@@ -57,7 +56,7 @@ public class TextAnalyzer implements ITextAnalyzer {
     }
 
     @Override
-    public void analyzeText(String filename) throws FileNotFoundException, IOException {
+    public void analyzeText(String filename) throws IOException {
         //Read the file specified into the scanner
         Scanner inp = new Scanner(new FileReader("txt/" + filename));
         while (inp.hasNext()) {
@@ -76,7 +75,7 @@ public class TextAnalyzer implements ITextAnalyzer {
         }
     }
 
-    public void findSuffixes(String filename, int suffixLength) throws FileNotFoundException, IOException {
+    void findSuffixes(String filename, int suffixLength) throws IOException {
         //Read the file specified into the scanner
         Scanner inp = new Scanner(new FileReader("txt/" + filename));
         while (inp.hasNext()) {
@@ -109,14 +108,14 @@ public class TextAnalyzer implements ITextAnalyzer {
             }
         }
     }
-    public void findNGrams(String filename, int nGramLenght) throws FileNotFoundException, IOException {
-        long chords = 0;
+    void findNGrams(String filename, int nGramLenght) throws IOException {
+        //long chords = 0;
         Scanner inp = new Scanner(new FileReader("txt/" + filename)).useDelimiter("\n");
         while (inp.hasNext()) {
             String line = inp.next();
             // Find all character frequencies
             int length = line.length();
-            chords += length;
+            //chords += length;
             // Find all n-bigrams
             for (int i = 0; i < length - (nGramLenght - 1); i++) {
                 String chunk = line.substring(i, i + nGramLenght).toLowerCase();
@@ -136,7 +135,7 @@ public class TextAnalyzer implements ITextAnalyzer {
         //System.out.println("chords " + chords);
     }
 
-    public void mccEfficiencies(String filename, String mccs[]) throws FileNotFoundException, IOException {
+    void mccEfficiencies(String filename, String mccs[]) throws IOException {
         //Read the file specified into the scanner
         long letters = 0;
         long chords = 0;
