@@ -1,3 +1,5 @@
+package com.alexbravo;
+
 import java.util.*;
 
 class WordData implements IWordData {

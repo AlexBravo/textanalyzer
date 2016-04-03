@@ -1,10 +1,5 @@
 txt/
-nbproject
 build/
-nbbuild/
 dist/
-nbdist/
 out/
-nbactions.xml
-nb-configuration.xml
 .idea
