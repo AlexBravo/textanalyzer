@@ -1,3 +1,5 @@
+package com.alexbravo;
+
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Iterator;
@@ -89,12 +91,12 @@ public class TextAnalyzerTester {
     private static void analizeEfficiencyOfSuffixes() {
         //With the tree map
         TextAnalyzer treeAnalyzer = new TextAnalyzer("treemap");
-        String fileName = "812_notes.txt";
-
-        final int MIN_COUNT = 1000;
+        //String fileName = "812_notes.txt";
+        String fileName = "aliceinwonderland.txt";
+        final int MIN_COUNT = 100;
         final int MIN_PREFIXES = 5;
         final int MIN_PREFIX_OCCURRENCES = 10;
-        final int SUFFIX_LENGTH = 4;
+        final int SUFFIX_LENGTH = 2;
         try {
             treeAnalyzer.findSuffixes(fileName, SUFFIX_LENGTH);
         } catch (IOException e) {
@@ -126,8 +128,8 @@ public class TextAnalyzerTester {
     public static void analiseEfficiencyOfMCCs() {
         //With the tree map
         TextAnalyzer treeAnalyzer = new TextAnalyzer("treemap");
-        String fileName = "812_notes.txt";
-        //fileName = "aliceinwonderland.txt";
+        //String fileName = "812_notes.txt";
+        String fileName = "aliceinwonderland.txt";
         /*
         String mccs[] = {
                 "the", "ing", "and", "for", "you", "are", "ant", "not", "his", "but"
