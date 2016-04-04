@@ -8,8 +8,8 @@ public class TextAnalyzerTester {
 
     public static void main(String[] args) {
 
-        //analizeEfficiencyOfMCCs();
-        analizeEfficiencyOfSuffixes();
+        analizeEfficiencyOfMCCs();
+        //analizeEfficiencyOfSuffixes();
 
         /*
         //Test the text ordering
@@ -125,7 +125,7 @@ public class TextAnalyzerTester {
     }
 
     @SuppressWarnings("unused")
-    public static void analiseEfficiencyOfMCCs() {
+    private static void analizeEfficiencyOfMCCs() {
         //With the tree map
         TextAnalyzer treeAnalyzer = new TextAnalyzer("treemap");
         //String fileName = "812_notes.txt";
@@ -171,11 +171,11 @@ public class TextAnalyzerTester {
         };
         */
         String mccs[] = { // final MCCs
-                "the","ing","and","ion",
-                "in", "er", "re", "th", "on", "or", "an", "le", "te", "es",
-                "he", "at", "to", "en", "co", "ro", "ed", "ti", "st", "de",
-                "al", "it", "se", "ar",
-                "ex", "sh", "ch", "ck", "is", "ph"
+                "the","ing","and",
+                "in", "or", "an", "th", "al", "at", "ar", "es",
+                "de", "il", "ac", "ch", "no", "ed",
+                "of", "ro", "ou", "is", "it", "en",
+                "er", "on", "to"
         };
 
         try {
