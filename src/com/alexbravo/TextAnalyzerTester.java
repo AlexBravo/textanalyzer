@@ -8,8 +8,8 @@ public class TextAnalyzerTester {
 
     public static void main(String[] args) {
 
-        //analizeEfficiencyOfMCCs();
-        analizeEfficiencyOfSuffixes();
+        //analyzeEfficiencyOfMCCs();
+        analyzeEfficiencyOfSuffixes();
 
         /*
         //Test the text ordering
@@ -88,7 +88,7 @@ public class TextAnalyzerTester {
         */
     }
 
-    private static void analizeEfficiencyOfSuffixes() {
+    private static void analyzeEfficiencyOfSuffixes() {
         //With the tree map
         TextAnalyzer treeAnalyzer = new TextAnalyzer("treemap");
         //String fileName = "812_notes.txt";
@@ -125,7 +125,7 @@ public class TextAnalyzerTester {
     }
 
     @SuppressWarnings("unused")
-    public static void analiseEfficiencyOfMCCs() {
+    public static void analyseEfficiencyOfMCCs() {
         //With the tree map
         TextAnalyzer treeAnalyzer = new TextAnalyzer("treemap");
         //String fileName = "812_notes.txt";
